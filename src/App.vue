@@ -1,16 +1,47 @@
 <template>
-  <div class="box">我是哈哈哈</div>
+  <VirtualList :listData="data" :estimatedItemSize="100" v-slot="slotProps">
+    <Item :item="slotProps.item" />
+  </VirtualList>
 </template>
 
 <script>
-export default {}
+import VirtualList from './components/virtualList.vue'
+import Item from './components/item.vue'
+
+import faker from 'faker';
+
+let data = [];
+for (let id = 0; id < 1000; id++) {
+  data.push({
+    id,
+    value: faker.lorem.sentences() // 长文本
+  })
+}
+
+export default {
+  name: 'app',
+  data(){
+    return {
+      data
+    };
+  },
+  components: {
+    VirtualList,
+    Item
+  }
+}
 </script>
 
-<style lang="scss">
-.box {
-  width: 500px;
-  height: 200px;
-  color: #fff;
-  background-color: #000;
+<style>
+html{
+  height: 100%;
 }
+body{
+  height: 100%;
+  margin:0;
+}
+#app{
+  height:100%;
+}
+
 </style>
