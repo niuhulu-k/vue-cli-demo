@@ -1,12 +1,11 @@
 <template>
-  <VirtualList :listData="data" :estimatedItemSize="100" v-slot="slotProps">
-    <Item :item="slotProps.item" />
-  </VirtualList>
+  <VirtualListComponent/>
+<!--  <TestTime/>-->
 </template>
 
 <script>
-import VirtualList from './components/virtualList.vue'
-import Item from './components/item.vue'
+import { VirtualListComponent, TestTime } from './components/index'
+
 
 import faker from 'faker';
 
@@ -20,15 +19,16 @@ for (let id = 0; id < 1000; id++) {
 
 export default {
   name: 'app',
+  components: {
+    VirtualListComponent,
+    TestTime
+  },
   data(){
     return {
       data
     };
   },
-  components: {
-    VirtualList,
-    Item
-  }
+
 }
 </script>
 
